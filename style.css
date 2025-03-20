@@ -103,6 +103,7 @@ body {
   visibility: hidden;
 }
 
+
 .addButtons {
 position: absolute;
   display: flex;
@@ -128,6 +129,7 @@ button, button:visited {
   
   
 }
+
 button:hover {
   background-color: #9b0909;
 }

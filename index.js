@@ -20,9 +20,9 @@ const Base = document.getElementById("base")
 
 // statussen voor de functions
 let slaStatus = true
-let sausStatus = true
-let tomaatStatus = true
-let uiStatus = true
+let sausStatus = false
+let tomaatStatus = false
+let uiStatus = false
 
 // let voor de h3 aanpassen:
 let header3 = document.getElementById("h3Eis")
@@ -32,43 +32,47 @@ let bell = new Audio('sound/game_sound.mp3');
 
 // functions om de images weer te geven.
 function showSla (){
-  if (slaStatus == true) {
+  if (slaStatus == false) {
     Sla.style.visibility = "visible";
-    slaStatus = false
+    slaStatus = true
   } else {
     Sla.style.visibility = "hidden";
-    slaStatus = true
+    slaStatus = false
   }
+  console.log(slaStatus)
 }
 
 function showSaus (){
-  if (sausStatus == true) {
+  if (sausStatus == false) {
     Saus.style.visibility = "visible";
-    sausStatus = false
+    sausStatus = true
   } else {
     Saus.style.visibility = "hidden";
-    sausStatus = true
+    sausStatus = false
   }
+  console.log(sausStatus)
 }
 
 function showTomaat (){
-  if (tomaatStatus == true) {
+  if (tomaatStatus == false) {
     Tomaat.style.visibility = "visible";
-    tomaatStatus = false
+    tomaatStatus = true
   } else {
     Tomaat.style.visibility = "hidden";
-    tomaatStatus = true
+    tomaatStatus = false
   }
+  console.log(tomaatStatus)
 }
 
 function showUi (){
-  if (uiStatus == true) {
+  if (uiStatus == false) {
     Ui.style.visibility = "visible";
-    uiStatus = false
+    uiStatus = true
   } else {
     Ui.style.visibility = "hidden";
-    uiStatus = true
+    uiStatus = false
   }
+  console.log(uiStatus)
 }
 
 // martha:
@@ -101,60 +105,50 @@ function tostadaCheck(){
     if ((slaStatus == false) && (sausStatus == false) && (tomaatStatus == false) && (uiStatus == false)){
       marthaMood.src="images/martha-mood-base.png"
       marthaHappy = false
-      console.log("correct ingeleverd")
       header3.textContent = "Dankjewel!"
     } else {
       marthaMood.src="images/martha-boos.png"
       marthaHappy = false
-      console.log("niet correct ingeleverd")
       header3.textContent = "Dat is niet wat ik wilde!"
     }
   } if ((willekeurigGetal==2) || (willekeurigGetal==3)){
       if ((slaStatus == false) && (sausStatus == true) && (tomaatStatus == false) && (uiStatus == false)){
         marthaMood.src="images/martha-mood-base.png"
         marthaHappy = false
-        console.log("correct ingeleverd")
         header3.textContent = "Dankjewel!"
       } else {
         marthaMood.src="images/martha-boos.png"
         marthaHappy = false
-        console.log("niet correct ingeleverd")
         header3.textContent = "Dat is niet wat ik wilde!"
       }
   } if ((willekeurigGetal==4) || (willekeurigGetal==5)){
       if ((slaStatus == false) && (sausStatus == false) && (tomaatStatus == true) && (uiStatus == false)){
         marthaMood.src="images/martha-mood-base.png"
         marthaHappy = false
-        console.log("correct ingeleverd")
         header3.textContent = "Dankjewel!"
       } else {
         marthaMood.src="images/martha-boos.png"
         marthaHappy = false
-        console.log("niet correct ingeleverd")
         header3.textContent = "Dat is niet wat ik wilde!"
       }
   } if ((willekeurigGetal==6) || (willekeurigGetal==7)){
     if ((slaStatus == false) && (sausStatus == false) && (tomaatStatus == false) && (uiStatus == true)){
       marthaMood.src="images/martha-mood-base.png"
       marthaHappy = false
-      console.log("correct ingeleverd")
       header3.textContent = "Dankjewel!"
     } else {
       marthaMood.src="images/martha-boos.png"
       marthaHappy = false
-      console.log("niet correct ingeleverd")
       header3.textContent = "Dat is niet wat ik wilde!"
     }
     if (willekeurigGetal==8){
       if ((slaStatus == false) && (sausStatus == true) && (tomaatStatus == false) && (uiStatus == false)){
         marthaMood.src="images/martha-mood-base.png"
         marthaHappy = false
-        console.log("correct ingeleverd")
         header3.textContent = "Dankjewel!"
       } else {
         marthaMood.src="images/martha-dead.png"
         marthaHappy = false
-        console.log("Martha is dood")
         header3.textContent = " "
       }}
   }
@@ -162,33 +156,70 @@ setTimeout(clearTostada, 5000)
 setTimeout(randomEisen, 5000)
 }
 */
-
 // function met switch :
-let switchGetal
+let switchGetal = 0
+
 function tostadaCheck(){
+  // tostada met alles
   if ((willekeurigGetal==0) || (willekeurigGetal==1)){
-    if ((slaStatus == false) && (sausStatus == false) && (tomaatStatus == false) && (uiStatus == false)){
+    if ((slaStatus == true) && (sausStatus == true) && (tomaatStatus == true) && (uiStatus == true)){
+      showBooleans()
       switchGetal = 1
-    }}
-    if ((willekeurigGetal==2) || (willekeurigGetal==3)){
-    if ((slaStatus == false) && (sausStatus == true) && (tomaatStatus == false) && (uiStatus == false)){
-      switchGetal = 2
-    }}
+    }
+  }
+  // tostada zonder saus
+  if ((willekeurigGetal==2) || (willekeurigGetal==3)){
+    if ((slaStatus == true) && (sausStatus == false) && (tomaatStatus == true) && (uiStatus == true)){
+      showBooleans()
+      switchGetal = 1
+    }
+  }
+  // tostada zonder tomaat
   if ((willekeurigGetal==4) || (willekeurigGetal==5)){
-    if ((slaStatus == false) && (sausStatus == false) && (tomaatStatus == true) && (uiStatus == false)){
-      switchGetal = 3
-    }}
+    if ((slaStatus == true) && (sausStatus == true)  && (tomaatStatus == false)&& (uiStatus == true)){
+      showBooleans()  
+      switchGetal = 1
+    }
+  }
+  // tostada zonder ui
   if ((willekeurigGetal==6) || (willekeurigGetal==7)){
-    if ((slaStatus == false) && (sausStatus == false) && (tomaatStatus == false) && (uiStatus == true)){
-      switchGetal = 4
-    }}
+    if ((slaStatus == true) && (sausStatus == true) && (tomaatStatus == true) && (uiStatus == false)){
+      showBooleans()
+      switchGetal = 1
+    }
+  } 
   checkSwitch()
-  // link naar de fucntion die het spel restart, met een delay van 5 seconden
+  // link naar de function die het spel restart, met een delay van 5 seconden
   setTimeout(clearTostada, 5000)
   setTimeout(randomEisen, 5000)
-  }
+}
+   
 
 // switchfunction, die op basis van het eerder gegenereerde getal een reactie genereerd.
+function checkSwitch() {
+  console.log("checkSwitch " + switchGetal)
+  switch (switchGetal) {
+    case 1:
+      marthaMood.src="images/martha-base-size.png"
+      header3.textContent = "Dankjewel!"
+    break;
+    case 2:
+      marthaMood.src="images/martha-boos.png"
+      header3.textContent = "Dat is niet wat ik wilde!"
+  default:
+    marthaMood.src="images/martha-boos.png"
+    header3.textContent = "Dat is niet wat ik wilde!"
+}}
+
+function showBooleans(){
+  console.log("sla status = " + slaStatus)
+  console.log("saus status = " + sausStatus)
+  console.log("tomaat status = " + tomaatStatus)
+  console.log("ui status = " + uiStatus)
+  console.log("switchgetal = " + switchGetal)
+}
+
+/* eerste switch functie
 function checkSwitch() {
   switch (switchGetal) {
     case 1:
@@ -206,21 +237,25 @@ function checkSwitch() {
         marthaMood.src="images/martha-base-size.png"
         header3.textContent = "Dankjewel!"
       break;
+      case 5:
+        marthaMood.src="images/martha-boos.png"
+        header3.textContent = "Dat is niet wat ik wilde!"
     default:
       marthaMood.src="images/martha-boos.png"
       header3.textContent = "Dat is niet wat ik wilde!"
 }}
+*/
 
 // functie die het spel opnieuw start. en linkt naar de fucntie die opnieuw een "tostadaGetal" genereert en daarmee nieuwe eisen stelt. deze function linkt ook naar het geluid, en naar de "baseShow" functie die na nog een kleine delay weer een img toont waarmee het voor de speler iets duidelijker is dat het spel opnieuw begint.
 function clearTostada() {
   Sla.style.visibility = "hidden";
-  slaStatus = true
+  slaStatus = false
   Saus.style.visibility = "hidden";
-  sausStatus = true
+  sausStatus = false
   Tomaat.style.visibility = "hidden";
-  tomaatStatus = true
+  tomaatStatus = false
   Ui.style.visibility = "hidden";
-  uiStatus = true
+  uiStatus = false
   Base.style.visibility = "hidden";
   setTimeout(baseShow, 1000)
   marthaMood.src="images/martha-base-size.png"
@@ -237,4 +272,5 @@ addSaus.addEventListener("click", showSaus)
 addTomaat.addEventListener('click',showTomaat)
 addUi.addEventListener('click',showUi)
 // eventlistenter voor inleveren
-leverIn.addEventListener('click', tostadaCheck)
+// oude eventlistener:  leverIn.addEventListener('click', tostadaCheck)
+leverIn.addEventListener('click', checkTopping)
