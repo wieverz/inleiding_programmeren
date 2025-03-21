@@ -272,5 +272,4 @@ addSaus.addEventListener("click", showSaus)
 addTomaat.addEventListener('click',showTomaat)
 addUi.addEventListener('click',showUi)
 // eventlistenter voor inleveren
-// oude eventlistener:  leverIn.addEventListener('click', tostadaCheck)
-leverIn.addEventListener('click', checkTopping)
+leverIn.addEventListener('click', tostadaCheck)
